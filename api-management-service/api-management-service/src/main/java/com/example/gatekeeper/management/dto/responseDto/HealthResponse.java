@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,7 +14,7 @@ import lombok.Setter;
 
 public class HealthResponse {
 
-    private String serviceName;
-    private String serviceDescription;
-    private String status;
+    private String serviceStatus;
+    private String dbStatus;
+    private LocalDateTime timestamp;
 }
