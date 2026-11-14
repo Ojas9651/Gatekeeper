@@ -29,6 +29,9 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth ->
                 auth.requestMatchers("/health", "/api/auth/login").permitAll()
+                        .requestMatchers("/api/patform/**").hasRole("PLATFORM_ADMIN")
+                        .requestMatchers("/api/tenant/**").hasRole("TENANT_ADMIN")
+                        .requestMatchers("/api/gateway/**").hasRole("GATEWAY_SERVICE")
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(resourceServer -> resourceServer.jwt(jwt ->
                         jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())));

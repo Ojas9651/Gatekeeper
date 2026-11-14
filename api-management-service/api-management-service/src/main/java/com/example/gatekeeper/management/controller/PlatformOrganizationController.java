@@ -2,7 +2,10 @@ package com.example.gatekeeper.management.controller;
 
 import com.example.gatekeeper.management.dto.requestDto.OrganizationRequest;
 import com.example.gatekeeper.management.dto.requestDto.OrganizationStatusRequest;
+import com.example.gatekeeper.management.dto.requestDto.TenantAdminRequest;
+import com.example.gatekeeper.management.dto.requestDto.TenantEnableRequest;
 import com.example.gatekeeper.management.dto.responseDto.OrganizationResponse;
+import com.example.gatekeeper.management.dto.responseDto.TenantAdminResponse;
 import com.example.gatekeeper.management.service.OrganizationService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -54,5 +57,28 @@ public class PlatformOrganizationController {
     public ResponseEntity<Void> delete(@PathVariable Long id){
         organizationService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    //CRUD for Tenant Admin
+
+    @PostMapping("/tenant")
+    public ResponseEntity<TenantAdminResponse> createTenant(@Valid @RequestBody TenantAdminRequest request){
+        return ResponseEntity.status(HttpStatus.CREATED).body(organizationService.createTenant(request));
+    }
+
+    @GetMapping("/tenant/{id}")
+    public ResponseEntity<TenantAdminResponse> findTenant(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(organizationService.findTenant(id));
+    }
+
+    @PutMapping("/tenant")
+    public ResponseEntity<TenantAdminResponse> updateTenant(@Valid @RequestBody TenantAdminRequest request){
+        return ResponseEntity.status(HttpStatus.OK).body(organizationService.updateTenant(request));
+    }
+
+    @DeleteMapping("/tenant/{id}")
+    public ResponseEntity<Void> deleteTenant(@PathVariable Long id){
+        organizationService.deleteTenant(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

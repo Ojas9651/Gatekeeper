@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface ManagementUserRepository extends JpaRepository<ManagementUser,Long> {
 
     Optional<ManagementUser> findByUsername(String username);
+
+    Optional<ManagementUser> findByOrganization_id(Long organizationId);
 }
