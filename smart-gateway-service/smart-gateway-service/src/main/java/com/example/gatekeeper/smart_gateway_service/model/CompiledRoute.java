@@ -1,4 +1,4 @@
-package com.example.gatekeeper.smart_gateway_service.dto;
+package com.example.gatekeeper.smart_gateway_service.model;
 
 import com.example.gatekeeper.smart_gateway_service.dto.responseDto.GatewayRoute;
 import lombok.AllArgsConstructor;
